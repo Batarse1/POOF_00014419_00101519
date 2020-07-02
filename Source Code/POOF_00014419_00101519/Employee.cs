@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using POOF_00014419_00101519.Controlers;
 
 namespace POOF_00014419_00101519
 {
     public class Employee : UserTypeInterface
     {
+        private delegate void Pages(TabPage p);
+        private static Pages _pages;
+        
         private TabControl _tabControl = null;
         public Employee(TabControl t)
         {
@@ -17,13 +21,18 @@ namespace POOF_00014419_00101519
             var p2 = new TabPage("Temperaturas más altas");
             _tabControl.TabPages.Add(p1);
             _tabControl.TabPages.Add(p2);
-            Page1(p1);
-            Page2(p2);
+            _pages = Page1;
+            _pages.Invoke(p1);
+            _pages = Page2;
+            _pages.Invoke(p2);
         }
 
         private void Page1(TabPage p1){
             DataGridView dataGridView = new DataGridView();
             dataGridView.Dock = DockStyle.Fill;
+            dataGridView.BackgroundColor = Color.Green;
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView.DataSource = RecordController.RecordTable();
             p1.Controls.Add(dataGridView);
         }
 
@@ -42,14 +51,11 @@ namespace POOF_00014419_00101519
             title.Location = new Point(130,50);
 
             p2.Controls.Add(title);
-            
-            var listTemperatures = new List<float>();
-            listTemperatures.Add(33.1f);
-            listTemperatures.Add(34.4f);
-            listTemperatures.Add(12.1f);
-            var temperatures = new Label[3];
-            var topPlace = new Label[3];
-            for (var i = 0; i < 3 ; i++)
+
+            var listTemperatures = RecordController.TopRecordList();
+            var temperatures = new Label[listTemperatures.Count];
+            var topPlace = new Label[listTemperatures.Count];
+            for (var i = 0; i < listTemperatures.Count ; i++)
             {
                 temperatures[i] = new Label();
                 topPlace[i] = new Label();
