@@ -13,9 +13,10 @@ namespace POOF_00014419_00101519
         }
         private void UserView_Load(object sender, EventArgs e)
         {
-            
-            UserTypeInterface sdlkf = new Employee(tabControlUserView);
-            sdlkf.load();
+            UserTypeInterface test = new Vigilant(tabControlUserView);
+            test.load();
+            //UserTypeInterface sdlkf = new Employee(tabControlUserView);
+            //sdlkf.load();
         }
     }
 }
