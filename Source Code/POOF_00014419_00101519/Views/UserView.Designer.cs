@@ -58,6 +58,7 @@ namespace POOF_00014419_00101519
             this.Name = "UserView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UserView";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UserView_FormClosing);
             this.Load += new System.EventHandler(this.UserView_Load);
             this.ResumeLayout(false);
         }

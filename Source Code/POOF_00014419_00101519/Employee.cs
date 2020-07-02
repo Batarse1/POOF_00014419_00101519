@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace POOF_00014419_00101519
@@ -6,22 +8,79 @@ namespace POOF_00014419_00101519
     public class Employee : UserTypeInterface
     {
         private TabControl _tabControl = null;
-        private Label jsdaflk = new Label();
         public Employee(TabControl t)
         {
             _tabControl = t;
         }
         public void load(){
-            TabPage tp = new TabPage("Page1");
-            _tabControl.TabPages.Add(tp);
-            jsdaflk.Text = "asdfasdf";
-            jsdaflk.Location= new Point(0,0);
-            tp.Controls.Add(jsdaflk);
+            var p1 = new TabPage("Historial");
+            var p2 = new TabPage("Temperaturas más altas");
+            _tabControl.TabPages.Add(p1);
+            _tabControl.TabPages.Add(p2);
+            Page1(p1);
+            Page2(p2);
         }
-        
-        private void Page1(TabPage t){
-        
+
+        private void Page1(TabPage p1){
+            DataGridView dataGridView = new DataGridView();
+            dataGridView.Dock = DockStyle.Fill;
+            p1.Controls.Add(dataGridView);
         }
-        
+
+        private void Page2(TabPage p2)
+        {
+            p2.BackColor = Color.Green;
+            var title = new Label();
+            
+            title.Text = $"TOP DE TEMPERATURAS";
+            title.Margin = new Padding(0, 0, 0, 0);
+            title.TextAlign = ContentAlignment.MiddleLeft;
+            title.Font = new Font("Microsoft JhengHei UI Light",24);
+            title.Height = 60;
+            title.Width = 600;
+            title.ForeColor = Color.White;
+            title.Location = new Point(130,50);
+
+            p2.Controls.Add(title);
+            
+            var listTemperatures = new List<float>();
+            listTemperatures.Add(33.1f);
+            listTemperatures.Add(34.4f);
+            listTemperatures.Add(12.1f);
+            var temperatures = new Label[3];
+            var topPlace = new Label[3];
+            for (var i = 0; i < 3 ; i++)
+            {
+                temperatures[i] = new Label();
+                topPlace[i] = new Label();
+                
+                temperatures[i].Text = $"{listTemperatures[i]}°C";
+                temperatures[i].Margin = new Padding(0, 0, 0, 0);
+                temperatures[i].TextAlign = ContentAlignment.MiddleLeft;
+                temperatures[i].Font = new Font("Microsoft JhengHei UI Light",18);
+                temperatures[i].Height = 60;
+                temperatures[i].Width = 200;
+                temperatures[i].ForeColor = Color.White;
+                temperatures[i].Location = new Point(480,70*(i+2));
+
+                if (i == 0)
+                    topPlace[i].Text = "Primera temperatura más alta";
+                if (i == 1)
+                    topPlace[i].Text = "Segunda temperatura más alta";
+                if (i == 2)
+                    topPlace[i].Text = "Tercera temperatura más alta";
+
+                topPlace[i].Margin = new Padding(0, 0, 0, 0);
+                topPlace[i].TextAlign = ContentAlignment.MiddleLeft;
+                topPlace[i].Font = new Font("Microsoft JhengHei UI Light",18);
+                topPlace[i].Height = 60;
+                topPlace[i].Width = 600;
+                topPlace[i].ForeColor = Color.White;
+                topPlace[i].Location = new Point(20,70*(i+2));
+                
+                p2.Controls.Add(temperatures[i]);
+                p2.Controls.Add(topPlace[i]);
+            }
+        }
     }
 }
