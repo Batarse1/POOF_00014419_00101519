@@ -32,24 +32,11 @@ namespace POOF_00014419_00101519
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserView));
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControlUserView = new System.Windows.Forms.TabControl();
-            this.tabControlUserView.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.Color.Green;
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(794, 422);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
             // 
             // tabControlUserView
             // 
-            this.tabControlUserView.Controls.Add(this.tabPage1);
             this.tabControlUserView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlUserView.Location = new System.Drawing.Point(0, 0);
             this.tabControlUserView.Name = "tabControlUserView";
@@ -72,12 +59,10 @@ namespace POOF_00014419_00101519
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UserView";
             this.Load += new System.EventHandler(this.UserView_Load);
-            this.tabControlUserView.ResumeLayout(false);
             this.ResumeLayout(false);
         }
 
         private System.Windows.Forms.TabControl tabControlUserView;
-        private System.Windows.Forms.TabPage tabPage1;
 
         #endregion
     }
