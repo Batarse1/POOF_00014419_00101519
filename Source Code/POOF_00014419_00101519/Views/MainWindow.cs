@@ -16,5 +16,10 @@ namespace POOF_00014419_00101519
             userView.Show();
             Hide();
         }
+        
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
