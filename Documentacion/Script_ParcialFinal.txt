@@ -1,0 +1,46 @@
+Script
+
+//Creando tabla departamento
+
+Create table departamento
+(
+	idDepartamento serial Primary Key
+	nombre character varying (50)
+	ubicacion character varying (50)	 
+); 
+
+Alter table departamento
+OWNER to postgres;
+
+//Creando la tabla 
+
+Create table appuser
+(
+	idUser serial Primary Key
+	idDepartamento int NOT NULL
+	CONSTRAINT fk_appuser_departamento
+	FOREIGN KEY (idDepartamento) REFERENCES departamento (idDepartamento) 
+	password character varying (30) NOT NULL,
+	name character varying (50) NOT NULL,	
+	lastname character varying (50) NOT NULL,
+	dui int NOT NULL
+	fechaNacimiento	character varying (30) NOT NULL,
+	userType BOOL NOT NULL
+);
+
+Alter table APPUSER
+OWNER to postgres;
+
+
+//Creando tabla registro
+
+Create table registro(
+	idRegistro serial Primary Key
+	idUsuario serial Primary Key
+	entrada BOOL NOT NULL
+	Fecha character varying (50)
+	Hora character varying (50)
+	Temperatura character varying (50)
+);
+
+
