@@ -42,28 +42,31 @@ namespace POOF_00014419_00101519.Controlers
                 MessageBox.Show("Ha ocurrido un error, debe de borrar los registros del usuario antes de borrar al usuario");
             }
         }
+        
 
+        
         public static DataTable PresentEmployees()
         {
             DataTable dataTable = new DataTable();
-            DataTable aux = null;
             List<int> ids = new List<int>();
             try
             {
                 Connection.IProxy proxy = new Connection.proxyA();
-                string sql = "SELECT * FROM REGISTRO ORDER BY fecha DESC, tiempo DESC";
-                aux = proxy.IExecuteQuery(sql);
-                foreach (DataRow dr in aux.Rows)
+                string sql = "SELECT * FROM REGISTRO ORDER BY fecha ASC, tiempo ASC";
+                dataTable = proxy.IExecuteQuery(sql);
+                for(int i = dataTable.Rows.Count-1; i >= 0; i--)
                 {
+                    DataRow dr = dataTable.Rows[i];
                     if (verification(ids, Convert.ToInt32(dr[1].ToString())))
                     {
+                        dr.Delete();
                     }
                     else
                     {
                         ids.Add(Convert.ToInt32(dr[1].ToString()));
-                        dataTable.Rows.Add(dr);
                     }
                 }
+                dataTable.AcceptChanges();
             }
             catch (Exception)
             {
