@@ -32,7 +32,7 @@ namespace POOF_00014419_00101519
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.BackgroundColor = Color.Green;
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView.DataSource = RecordController.RecordTable();
+            dataGridView.DataSource = RecordController.RecordTableId();
             p1.Controls.Add(dataGridView);
         }
 

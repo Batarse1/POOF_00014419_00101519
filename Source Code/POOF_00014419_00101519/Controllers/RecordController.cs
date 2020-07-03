@@ -11,7 +11,7 @@ namespace POOF_00014419_00101519.Controlers
     
     public static class RecordController
     {
-        public static DataTable RecordTable()
+        public static DataTable RecordTableId()
         {
             DataTable dataTable = null;
             try
@@ -28,13 +28,31 @@ namespace POOF_00014419_00101519.Controlers
             return dataTable;
         }
         
+        public static DataTable RecordTable()
+        {
+            DataTable dataTable = null;
+            try
+            {
+                Connection.IProxy proxy = new Connection.proxyA();
+                string sql = "SELECT * FROM registro";
+                dataTable = proxy.IExecuteQuery(sql);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ha ocurrido un error");
+            }
+
+            return dataTable;
+        }
+
+        
         public static List<double> TopRecordList()
         {
             List<double> list = new List<double>();
             try
             {
                 Connection.IProxy proxy = new Connection.proxyA();
-                string sql = "SELECT * FROM REGISTRO r WHERE idusuario = 1 ORDER BY r.temperatura DESC LIMIT 3";
+                string sql = "SELECT * FROM REGISTRO r ORDER BY r.temperatura DESC LIMIT 5";
                 DataTable dataTable = proxy.IExecuteQuery(sql);
                 foreach(DataRow dr in dataTable.Rows)
                 {

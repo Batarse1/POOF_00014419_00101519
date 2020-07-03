@@ -56,6 +56,7 @@ namespace POOF_00014419_00101519
                        ComboBox2.Width = 420;
                        ComboBox2.ForeColor = Color.Black;
                        ComboBox2.Location = new Point(160,48*(i)+25);
+                       ComboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
                        p1.Controls.Add(ComboBox2);
                    }
 
