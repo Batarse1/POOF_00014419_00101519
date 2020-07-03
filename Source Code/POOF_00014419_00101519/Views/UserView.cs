@@ -20,14 +20,17 @@ namespace POOF_00014419_00101519
             switch (opt)
             {
                 case 1:
+                    Text = "General";
                     UserTypeInterface employee = new Employee(tabControlUserView, userSelected);
                     employee.load();
                     break;
                 case 2:
+                    Text = "Vigilancia";
                     UserTypeInterface vigilant = new Vigilant(tabControlUserView, userSelected);
                     vigilant.load();
                     break;
                 case 3:    
+                    Text = "Administrativo";
                     UserTypeInterface admin = new Admin(tabControlUserView, userSelected);
                     admin.load();
                     break;

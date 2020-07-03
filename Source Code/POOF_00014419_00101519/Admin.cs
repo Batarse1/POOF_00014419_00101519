@@ -235,6 +235,7 @@ namespace POOF_00014419_00101519
             DataGridView dataGridView = new DataGridView();
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.BackgroundColor = Color.Green;
+            dataGridView.DataSource = UserController.PresentEmployees();
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             p4.Controls.Add(dataGridView);
         }

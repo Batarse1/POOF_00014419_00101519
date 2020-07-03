@@ -43,6 +43,48 @@ namespace POOF_00014419_00101519.Controlers
             }
         }
 
+        public static DataTable PresentEmployees()
+        {
+            DataTable dataTable = new DataTable();
+            DataTable aux = null;
+            List<int> ids = new List<int>();
+            try
+            {
+                Connection.IProxy proxy = new Connection.proxyA();
+                string sql = "SELECT * FROM REGISTRO ORDER BY fecha DESC, tiempo DESC";
+                aux = proxy.IExecuteQuery(sql);
+                foreach (DataRow dr in aux.Rows)
+                {
+                    if (verification(ids, Convert.ToInt32(dr[1].ToString())))
+                    {
+                    }
+                    else
+                    {
+                        ids.Add(Convert.ToInt32(dr[1].ToString()));
+                        dataTable.Rows.Add(dr);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ha ocurrido un error");
+            }
+
+            return dataTable;
+        }
+
+        private static bool verification(List<int> ids, int i)
+        {
+            foreach (var id in ids)
+            {
+                if (id == i)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
         public static void AddUser(int idDepartamento, string contrasenia, string nombre, string apellido, string dui, DateTime fechaNacimiento)
         {
             try
