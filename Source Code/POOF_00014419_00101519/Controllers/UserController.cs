@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Windows.Forms;
 using POOF_00014419_00101519.Models;
 
@@ -42,8 +43,35 @@ namespace POOF_00014419_00101519.Controlers
                 MessageBox.Show("Ha ocurrido un error, debe de borrar los registros del usuario antes de borrar al usuario");
             }
         }
-        
 
+        public static DataTable olderEmployees()
+        {
+            DataTable dataTable = new DataTable();
+            try
+            {
+                Connection.IProxy proxy = new Connection.proxyA();
+                string sql = "SELECT * FROM USUARIO";
+                dataTable = proxy.IExecuteQuery(sql);
+                for(int i = dataTable.Rows.Count-1; i >= 0; i--)
+                {
+                    DataRow dr = dataTable.Rows[i];
+                    CultureInfo provider = CultureInfo.InvariantCulture;
+                    string s = dr[6].ToString().Substring(0,8);
+                    var age = DateTime.Now.Year - Convert.ToDateTime(s).Year;
+                    if (age<60)
+                    {
+                        dr.Delete();
+                    }
+                }
+                dataTable.AcceptChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ha ocurrido un error");
+            }
+
+            return dataTable;
+        }
         
         public static DataTable PresentEmployees()
         {

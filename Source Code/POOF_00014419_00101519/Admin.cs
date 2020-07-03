@@ -36,7 +36,7 @@ namespace POOF_00014419_00101519
             p4 = new TabPage("Empleados Presentes");
             p5 = new TabPage("Departamento más concurrido");
             p6 = new TabPage("Top Temperatura Empleados");
-            p7 = new TabPage("Top Temperatura Empleados");
+            p7 = new TabPage("Empleados mayores");
             _tabControl.TabPages.Add(p1);
             _tabControl.TabPages.Add(p2);
             _tabControl.TabPages.Add(p3);
@@ -314,6 +314,7 @@ namespace POOF_00014419_00101519
             DataGridView dataGridView = new DataGridView();
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.BackgroundColor = Color.Green;
+            dataGridView.DataSource = UserController.olderEmployees();
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             p7.Controls.Add(dataGridView);
         }

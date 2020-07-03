@@ -21,7 +21,7 @@ namespace POOF_00014419_00101519
             }
             else
             {
-                MessageBox.Show("Ha ocurrido un error");
+                MessageBox.Show("Contraseña incorrecta");
             }
         }
         
