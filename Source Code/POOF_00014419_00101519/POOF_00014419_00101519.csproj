@@ -88,6 +88,7 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Admin.cs" />
         <Compile Include="Controllers\Connection.cs" />
         <Compile Include="Controllers\RecordController.cs" />
         <Compile Include="Employee.cs" />

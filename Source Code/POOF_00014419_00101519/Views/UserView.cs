@@ -15,7 +15,9 @@ namespace POOF_00014419_00101519
         {
             // UserTypeInterface test = new Vigilant(tabControlUserView);
             // test.load();
-            UserTypeInterface sdlkf = new Employee(tabControlUserView);
+            // UserTypeInterface sdlkf = new Employee(tabControlUserView);
+            // sdlkf.load();
+            UserTypeInterface sdlkf = new Admin(tabControlUserView);
             sdlkf.load();
         }
 
