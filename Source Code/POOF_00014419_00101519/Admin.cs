@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using POOF_00014419_00101519.Controlers;
+using POOF_00014419_00101519.Models;
 
 namespace POOF_00014419_00101519
 {
@@ -22,7 +23,7 @@ namespace POOF_00014419_00101519
         private TabPage p7;
         private ComboBox comboBoxRemoveUser;
         private ComboBox comboBoxAddUser;
-        public Admin(TabControl t)
+        public Admin(TabControl t, User u)
         {
             _tabControl = t;
         }

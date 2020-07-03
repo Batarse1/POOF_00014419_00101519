@@ -2,23 +2,36 @@
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
+using POOF_00014419_00101519.Models;
 
 namespace POOF_00014419_00101519
 {
     public partial class UserView : Form
     {
-        public UserView()
+        private User userSelected;
+        public UserView(User u)
         {
+            userSelected = u;
             InitializeComponent();
         }
         private void UserView_Load(object sender, EventArgs e)
         {
-            //UserTypeInterface test = new Vigilant(tabControlUserView);
-            //test.load();
-            // UserTypeInterface sdlkf = new Employee(tabControlUserView);
-            // sdlkf.load();
-             //UserTypeInterface sdlkf = new Admin(tabControlUserView);
-             //sdlkf.load();
+            byte opt = Convert.ToByte(userSelected.IdDepartamento);
+            switch (opt)
+            {
+                case 1:
+                    UserTypeInterface employee = new Employee(tabControlUserView, userSelected);
+                    employee.load();
+                    break;
+                case 2:
+                    UserTypeInterface vigilant = new Vigilant(tabControlUserView, userSelected);
+                    vigilant.load();
+                    break;
+                case 3:    
+                    UserTypeInterface admin = new Admin(tabControlUserView, userSelected);
+                    admin.load();
+                    break;
+            }
         }
 
         private void UserView_FormClosing(object sender, FormClosingEventArgs e)

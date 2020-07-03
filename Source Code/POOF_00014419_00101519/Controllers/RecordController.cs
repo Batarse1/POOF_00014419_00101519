@@ -11,13 +11,13 @@ namespace POOF_00014419_00101519.Controlers
     
     public static class RecordController
     {
-        public static DataTable RecordTableId()
+        public static DataTable RecordTableId(int i)
         {
             DataTable dataTable = null;
             try
             {
                 Connection.IProxy proxy = new Connection.proxyA();
-                string sql = "SELECT r.entrada,r.fecha,r.tiempo,r.temperatura FROM registro r WHERE idusuario = 1";
+                string sql = $"SELECT r.entrada,r.fecha,r.tiempo,r.temperatura FROM registro r WHERE idusuario = {i}";
                 dataTable = proxy.IExecuteQuery(sql);
             }
             catch (Exception)
@@ -26,6 +26,26 @@ namespace POOF_00014419_00101519.Controlers
             }
 
             return dataTable;
+        }
+
+        public static string TopTemperatureID(int i)
+        {
+            string s = "\0";
+            try
+            {
+                Connection.IProxy proxy = new Connection.proxyA();
+                string sql = $"SELECT r.entrada,r.fecha,r.tiempo,r.temperatura FROM registro r WHERE idusuario = {i} ORDER BY temperatura DESC LIMIT 1";
+                DataTable dataTable = proxy.IExecuteQuery(sql);
+                foreach (DataRow dr in dataTable.Rows)
+                {
+                    s = dr[3].ToString();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ha ocurrido un error");
+            }
+            return s;
         }
         
         public static DataTable RecordTable()
@@ -65,6 +85,21 @@ namespace POOF_00014419_00101519.Controlers
             }
 
             return list;
+        }
+
+        public static void AddRecord(int idUsuario, bool entrada, DateTime fecha, DateTime tiempo, double temperatura)
+        {
+            try
+            {
+                Connection.IProxy proxy = new Connection.proxyA();
+                string sql = $"INSERT INTO REGISTRO(idUsuario,entrada,fecha,tiempo,temperatura) VALUES ({idUsuario},{entrada},'{fecha}','{tiempo}',{temperatura})";
+                proxy.IExecuteNonQuery(sql);
+                MessageBox.Show("Se ha agregado exitosamente");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ha ocurrido un error");
+            }
         }
     }
 }
